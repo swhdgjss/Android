@@ -30,19 +30,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name;
-                Intent intent = new Intent();
 
                 if(editText.getText().toString().equals("")) name = "Guest";
                 else name = editText.getText().toString();
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.radioButton:
+                        Intent intent = new Intent(MainActivity.this, Play4.class);
                         intent.putExtra("name", name);
+                        startActivity(intent);
                         break;
                     case R.id.radioButton2:
-                        intent.putExtra("name", name);
+                        Intent intent2 = new Intent(MainActivity.this, Play5.class);
+                        intent2.putExtra("name", name);
+                        startActivity(intent2);
                         break;
                     case R.id.radioButton3:
-                        intent.putExtra("name", name);
+                        Intent intent3 = new Intent(MainActivity.this, Play6.class);
+                        intent3.putExtra("name", name);
+                        startActivity(intent3);
                         break;
                 }
             }
