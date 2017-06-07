@@ -1,4 +1,6 @@
-package com.example.l.holdem; /**
+package com.example.l.holdem;
+
+/**
  * Created by L on 2017-06-02.
  */
 
@@ -11,7 +13,7 @@ public class Rule{
     public Deck deck = new Deck();
 
     public Tuple deal() {
-        boolean check = true;
+        boolean check;
         int x, y;
 
         do {
