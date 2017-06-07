@@ -74,6 +74,7 @@ public class Rule{
 
     public void clear() {
         board.clear();
+        deck.clear();
     }
 
     public String[] hands(ArrayList<Tuple> card) {

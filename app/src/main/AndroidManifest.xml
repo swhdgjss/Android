@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Splash"></activity>
+        <activity android:name=".Splash" />
+        <activity android:name=".Play4" />
+        <activity android:name=".Play5" />
+        <activity android:name=".Play6"></activity>
     </application>
 
 </manifest>

@@ -22,6 +22,8 @@ public class Deck {
     }
 
     public void clear() {
-        Arrays.fill(deck, 0);
+        for(int[] tmp: deck) {
+            Arrays.fill(tmp, 0);
+        }
     }
 }
