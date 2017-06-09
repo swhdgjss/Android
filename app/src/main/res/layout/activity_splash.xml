@@ -15,12 +15,12 @@
         android:textSize="40sp"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="419dp"
-        android:layout_below="@+id/imageView4"
+        android:layout_below="@+id/7"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="71dp" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/7"
         android:layout_width="350dp"
         android:layout_height="350dp"
         app:srcCompat="@drawable/card"
