@@ -16,7 +16,7 @@ public class Player extends Rule{
         card = new ArrayList<Tuple>(8);
     }
 
-    public void get() {
+    public void draw() {
         Tuple tmp;
 
         tmp = this.deal();
