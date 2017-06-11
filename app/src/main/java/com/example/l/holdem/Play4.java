@@ -15,10 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+import static java.lang.Double.*;
 
 public class Play4 extends AppCompatActivity {
 
@@ -35,7 +32,6 @@ public class Play4 extends AppCompatActivity {
         setContentView(R.layout.activity_play4);
 
         Intent intent = getIntent();
-        Timer timer = new Timer(true);
         dialog = new AlertDialog.Builder(Play4.this);
         textView = (TextView) findViewById(R.id.textView4);
         card1 = (ImageView) findViewById(R.id.card1);
@@ -86,7 +82,7 @@ public class Play4 extends AppCompatActivity {
             player[i].sum(player[i].card, rule.board);
             score[i] = player[i].determineHands(player[i].hands(player[i].card));
         }
-        double win = Double.max(Double.max(score[0], score[1]), Double.max(score[2], score[3]));
+        double win = max(max(score[0], score[1]), max(score[2], score[3]));
 
         for(Player tmp: player) {
             if(tmp.score == win) {
