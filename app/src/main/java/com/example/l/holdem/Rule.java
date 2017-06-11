@@ -4,15 +4,21 @@ package com.example.l.holdem;
  * Created by L on 2017-06-02.
  */
 
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Rule{
     public ArrayList<Tuple> board = new ArrayList<Tuple>(6);
     public Random random = new Random();
-    public Deck deck = new Deck();
+    public Deck deck;
 
-    public Tuple deal() {
+    public Rule(Deck deck) {
+        this.deck = deck;
+    }
+
+    public Tuple deal(Deck deck) {
         boolean check;
         int x, y;
 
@@ -31,7 +37,7 @@ public class Rule{
         Tuple tmp;
 
         for(int i = 0; i < 3; i++) {
-            tmp = this.deal();
+            tmp = this.deal(this.deck);
             board.add(tmp);
         }
     }
@@ -44,7 +50,7 @@ public class Rule{
     public void turn() {
         Tuple tmp;
 
-        tmp = this.deal();
+        tmp = this.deal(this.deck);
         board.add(tmp);
     }
 
@@ -56,7 +62,7 @@ public class Rule{
     public void river() {
         Tuple tmp;
 
-        tmp = this.deal();
+        tmp = this.deal(this.deck);
         board.add(tmp);
     }
 
@@ -78,10 +84,8 @@ public class Rule{
     }
 
     public String[] hands(ArrayList<Tuple> card) {
-        String[][] hand = new String[9][3];
-        String[] no = new String[1];
+        String[][] hand = new String[10][3];
 
-        no[0] = "No";
         hand[0] = isRoyalStraightFlush(card);
         hand[1] = isStraighFlush(card);
         hand[2] = isFourCard(card);
@@ -91,11 +95,12 @@ public class Rule{
         hand[6] = isTriple(card);
         hand[7] = isTwoPair(card);
         hand[8] = isOnePair(card);
+        hand[9] = isTop(card);
 
         for(String[] tmp : hand) {
             if(tmp[0] != null) return tmp;
         }
-        return no;
+        return hand[9];
     }
 
     public String[] isRoyalStraightFlush(ArrayList<Tuple> card) {
@@ -218,7 +223,7 @@ public class Rule{
         for(int i = 1; i <= 10; i++) {
             if(c[i] == 1 && c[i + 1] == 1 && c[i + 2] == 1 && c[i + 3] == 1 && c[i + 4] == 1) {
                 result[0] = "Straight";
-                result[1] = Integer.toString(i);
+                result[1] = Integer.toString(i + 4);
             } else if(c[2] == 1 && c[3] == 1 && c[4] == 1 && c[5] == 1 && c[14] == 1) {
                 result[0] = "Straight";
                 result[1] = Integer.toString(5);
@@ -283,6 +288,26 @@ public class Rule{
                 result[0] = "One Pair";
                 result[1] = Integer.toString(i);
             }
+        }
+        return result;
+    }
+
+    public String[] isTop(ArrayList<Tuple> card) {
+        int[] c = new int[15];
+        int y, count = 0;
+        String[] result = new String[3];
+
+        for(Tuple tmp : card) {
+            y = tmp.getY();
+            c[y]++;
+        }
+
+        for(int i = 14; i > 1; i--) {
+            if(c[i] > 0) {
+                result[count] = Integer.toString(i);
+                count++;
+            }
+            if(count == 3) break;
         }
         return result;
     }
