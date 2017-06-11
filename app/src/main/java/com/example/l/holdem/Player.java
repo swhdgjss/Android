@@ -140,7 +140,7 @@ public class Player extends Rule{
                 score = 100 + Integer.valueOf(hand[1]);
                 return score;
             default:
-                System.out.println(num.getNum(hand[0]) + num.getNum(hand[1]) + num.getNum(hand[2]));
+                System.out.println(num.getNum(hand[0]) + " " + num.getNum(hand[1]) + " " + num.getNum(hand[2]));
                 score = Integer.valueOf(hand[0]) + (0.01 * Integer.valueOf(hand[1])) + (0.001 * Integer.valueOf(hand[2]));
                 System.out.println("No Pair");
                 return score;

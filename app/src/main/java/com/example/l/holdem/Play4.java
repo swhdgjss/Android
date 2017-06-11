@@ -1,24 +1,42 @@
 package com.example.l.holdem;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
+import android.os.SystemClock;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 public class Play4 extends AppCompatActivity {
 
     ImageView card1, card2, card3, card4, card5, card6, card7, card8,
             board1, board2, board3, board4, board5;
     TextView textView;
+    Button button;
+    AlertDialog.Builder dialog;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play4);
 
         Intent intent = getIntent();
+        Timer timer = new Timer(true);
+        dialog = new AlertDialog.Builder(Play4.this);
         textView = (TextView) findViewById(R.id.textView4);
         card1 = (ImageView) findViewById(R.id.card1);
         card2 = (ImageView) findViewById(R.id.card2);
@@ -28,14 +46,16 @@ public class Play4 extends AppCompatActivity {
         card6 = (ImageView) findViewById(R.id.card6);
         card7 = (ImageView) findViewById(R.id.card7);
         card8 = (ImageView) findViewById(R.id.card8);
-        board1 = (ImageView)findViewById(R.id.board1);
-        board2 = (ImageView)findViewById(R.id.board2);
-        board3 = (ImageView)findViewById(R.id.board3);
-        board4 = (ImageView)findViewById(R.id.board4);
-        board5 = (ImageView)findViewById(R.id.board5);
+        board1 = (ImageView) findViewById(R.id.board1);
+        board2 = (ImageView) findViewById(R.id.board2);
+        board3 = (ImageView) findViewById(R.id.board3);
+        board4 = (ImageView) findViewById(R.id.board4);
+        board5 = (ImageView) findViewById(R.id.board5);
+        button = (Button) findViewById(R.id.button2);
         Deck deck = new Deck();
         Rule rule = new Rule(deck);
         Player[] player = new Player[4];
+        double[] score = new double[4];
         String[] hand = new String[4];
 
         String name = intent.getStringExtra("name");
@@ -56,21 +76,47 @@ public class Play4 extends AppCompatActivity {
         open(rule.board.get(0), board1);
         open(rule.board.get(1), board2);
         open(rule.board.get(2), board3);
-        rule.turnOpen();
+       rule.turnOpen();
         open(rule.board.get(3), board4);
+        SystemClock.sleep(1000);
         rule.riverOpen();
         open(rule.board.get(4), board5);
 
-        for(Player tmp: player) {
-            tmp.sum(tmp.card, rule.board);
-            double ss = tmp.determineHands(tmp.hands(tmp.card));
-            System.out.println(ss);
+        for(int i = 0; i < 4; i++) {
+            player[i].sum(player[i].card, rule.board);
+            score[i] = player[i].determineHands(player[i].hands(player[i].card));
         }
+        double win = Double.max(Double.max(score[0], score[1]), Double.max(score[2], score[3]));
 
         for(Player tmp: player) {
+            if(tmp.score == win) {
+                Toast.makeText(this, tmp.name + "'s win!!", Toast.LENGTH_SHORT).show();
+            }
             tmp.clear();
         }
         rule.clear();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.setTitle("다시하기");
+                dialog.setMessage("다시 하시겠습니까?");
+                dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                });
+                dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+        });
     }
 
     public void open(Tuple card, ImageView imageView) {
