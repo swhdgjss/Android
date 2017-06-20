@@ -22,7 +22,7 @@ public class Play4 extends AppCompatActivity {
             board1, board2, board3, board4, board5;
     TextView state, money, money1, money2, money3;
     EditText editText;
-    Button button, button2;
+    Button replay, bet;
     AlertDialog.Builder dialog;
     Deck deck;
     Rule rule;
@@ -58,8 +58,8 @@ public class Play4 extends AppCompatActivity {
         board3 = (ImageView) findViewById(R.id.board3);
         board4 = (ImageView) findViewById(R.id.board4);
         board5 = (ImageView) findViewById(R.id.board5);
-        button = (Button) findViewById(R.id.button2);
-        button2 = (Button) findViewById(R.id.bet);
+        replay = (Button) findViewById(R.id.button2);
+        bet = (Button) findViewById(R.id.bet);
         deck = new Deck();
         rule = new Rule(deck);
         player = new Player[4];
@@ -74,7 +74,7 @@ public class Play4 extends AppCompatActivity {
 
         game();
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        bet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch(flag) {
@@ -96,7 +96,7 @@ public class Play4 extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        replay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.setTitle("다시하기");
@@ -313,7 +313,6 @@ public class Play4 extends AppCompatActivity {
     public void firstTurn() {
         betting();
 
-        System.out.print(player[0].money);
         rule.flopOpen();
         open(rule.board.get(0), board1);
         open(rule.board.get(1), board2);
@@ -394,7 +393,6 @@ public class Play4 extends AppCompatActivity {
     }
 
     public void betting() {
-        System.out.println(editText.getText().toString());
         if(editText.getText().toString().equals("")) {
             for(Player tmp: player) {
                 tmp.bet(0);
