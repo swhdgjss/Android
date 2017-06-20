@@ -36,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.radioButton:
                         Intent intent = new Intent(MainActivity.this, Play4.class);
-                        intent.putExtra("name", name);
+                        intent.putExtra("state", name);
                         startActivity(intent);
                         break;
                     case R.id.radioButton2:
                         Intent intent2 = new Intent(MainActivity.this, Play5.class);
-                        intent2.putExtra("name", name);
+                        intent2.putExtra("state", name);
                         startActivity(intent2);
                         break;
                     case R.id.radioButton3:
                         Intent intent3 = new Intent(MainActivity.this, Play6.class);
-                        intent3.putExtra("name", name);
+                        intent3.putExtra("state", name);
                         startActivity(intent3);
                         break;
                 }

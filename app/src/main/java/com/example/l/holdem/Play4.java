@@ -3,14 +3,13 @@ package com.example.l.holdem;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.os.SystemClock;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,19 +20,31 @@ public class Play4 extends AppCompatActivity {
 
     ImageView card1, card2, card3, card4, card5, card6, card7, card8,
             board1, board2, board3, board4, board5;
-    TextView textView;
-    Button button;
+    TextView state, money, money1, money2, money3;
+    EditText editText;
+    Button button, button2;
     AlertDialog.Builder dialog;
+    Deck deck;
+    Rule rule;
+    Player[] player;
+    double[] score;
+    String[] hand;
+    int flag = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play4);
 
         Intent intent = getIntent();
         dialog = new AlertDialog.Builder(Play4.this);
-        textView = (TextView) findViewById(R.id.textView4);
+        state = (TextView) findViewById(R.id.textView4);
+        money = (TextView) findViewById(R.id.textView5);
+        money1 = (TextView) findViewById(R.id.money1);
+        money2 = (TextView) findViewById(R.id.money2);
+        money3 = (TextView) findViewById(R.id.money3);
+        editText = (EditText) findViewById(R.id.editText2);
         card1 = (ImageView) findViewById(R.id.card1);
         card2 = (ImageView) findViewById(R.id.card2);
         card3 = (ImageView) findViewById(R.id.card3);
@@ -48,49 +59,42 @@ public class Play4 extends AppCompatActivity {
         board4 = (ImageView) findViewById(R.id.board4);
         board5 = (ImageView) findViewById(R.id.board5);
         button = (Button) findViewById(R.id.button2);
-        Deck deck = new Deck();
-        Rule rule = new Rule(deck);
-        Player[] player = new Player[4];
-        double[] score = new double[4];
-        String[] hand = new String[4];
+        button2 = (Button) findViewById(R.id.bet);
+        deck = new Deck();
+        rule = new Rule(deck);
+        player = new Player[4];
+        score = new double[4];
+        hand = new String[4];
 
-        String name = intent.getStringExtra("name");
+        String name = intent.getStringExtra("state");
         player[0] = new Player(name, deck);
         player[1] = new Player("computer1", deck);
         player[2] = new Player("computer2", deck);
         player[3] = new Player("computer3", deck);
 
-        textView.setText(player[0].name);
-        for(Player tmp: player) {
-            tmp.draw();
-        }
+        game();
 
-        open(player[0].card.get(0), card1);
-        open(player[0].card.get(1), card2);
-
-        rule.flopOpen();
-        open(rule.board.get(0), board1);
-        open(rule.board.get(1), board2);
-        open(rule.board.get(2), board3);
-       rule.turnOpen();
-        open(rule.board.get(3), board4);
-        SystemClock.sleep(1000);
-        rule.riverOpen();
-        open(rule.board.get(4), board5);
-
-        for(int i = 0; i < 4; i++) {
-            player[i].sum(player[i].card, rule.board);
-            score[i] = player[i].determineHands(player[i].hands(player[i].card));
-        }
-        double win = max(max(score[0], score[1]), max(score[2], score[3]));
-
-        for(Player tmp: player) {
-            if(tmp.score == win) {
-                Toast.makeText(this, tmp.name + "'s win!!", Toast.LENGTH_SHORT).show();
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(flag) {
+                    case 0:
+                        firstTurn();
+                        break;
+                    case 1:
+                        secondTurn();
+                        break;
+                    case 2:
+                        thirdTurn();
+                        break;
+                    case 3:
+                        fourthTurn();
+                        lastTurn();
+                        showDown();
+                        break;
+                }
             }
-            tmp.clear();
-        }
-        rule.clear();
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +104,7 @@ public class Play4 extends AppCompatActivity {
                 dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                        startActivity(getIntent());
+                        replay();
                     }
                 });
                 dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
@@ -113,6 +116,21 @@ public class Play4 extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    public void game() {
+        state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
+        money1.setText("현재 돈 :" + player[1].money);
+        money2.setText("현재 돈 :" + player[2].money);
+        money3.setText("현재 돈 :" + player[3].money);
+        money.setText("판돈 :" + rule.gameMoney);
+
+        for(Player tmp: player) {
+            tmp.draw();
+        }
+
+        open(player[0].card.get(0), card1);
+        open(player[0].card.get(1), card2);
     }
 
     public void open(Tuple card, ImageView imageView) {
@@ -290,5 +308,109 @@ public class Play4 extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    public void firstTurn() {
+        betting();
+
+        System.out.print(player[0].money);
+        rule.flopOpen();
+        open(rule.board.get(0), board1);
+        open(rule.board.get(1), board2);
+        open(rule.board.get(2), board3);
+        flag++;
+    }
+
+    public void secondTurn() {
+        betting();
+
+        rule.turnOpen();
+        open(rule.board.get(3), board4);
+        flag++;
+    }
+
+    public void thirdTurn() {
+        betting();
+
+        rule.riverOpen();
+        open(rule.board.get(4), board5);
+        flag++;
+    }
+
+    public void fourthTurn() {
+        betting();
+        flag++;
+    }
+
+    public void lastTurn() {
+        for(int i = 0; i < 4; i++) {
+            player[i].sum(player[i].card, rule.board);
+            score[i] = player[i].determineHands(player[i].hands(player[i].card));
+        }
+        double win = max(max(score[0], score[1]), max(score[2], score[3]));
+
+        for(Player tmp: player) {
+            if(tmp.score == win) {
+                Toast.makeText(this, tmp.name + "'s win!!", Toast.LENGTH_SHORT).show();
+                tmp.money += rule.gameMoney;
+                break;
+            }
+        }
+        //rule.clear();
+    }
+
+    public void replay() {
+        for(Player tmp: player) {
+            tmp.clear();
+        }
+        rule.clear();
+        flag = 0;
+
+        board1.setImageResource(R.drawable.back);
+        board2.setImageResource(R.drawable.back);
+        board3.setImageResource(R.drawable.back);
+        board4.setImageResource(R.drawable.back);
+        board5.setImageResource(R.drawable.back);
+
+        card1.setImageResource(R.drawable.back);
+        card2.setImageResource(R.drawable.back);
+        card3.setImageResource(R.drawable.back);
+        card4.setImageResource(R.drawable.back);
+        card5.setImageResource(R.drawable.back);
+        card6.setImageResource(R.drawable.back);
+        card7.setImageResource(R.drawable.back);
+        card8.setImageResource(R.drawable.back);
+        money.setText("판돈 :" + rule.gameMoney);
+
+        game();
+    }
+
+    public void showDown() {
+        open(player[1].card.get(0), card3);
+        open(player[1].card.get(1), card4);
+        open(player[2].card.get(0), card5);
+        open(player[2].card.get(1), card6);
+        open(player[3].card.get(0), card7);
+        open(player[3].card.get(1), card8);
+    }
+
+    public void betting() {
+        System.out.println(editText.getText().toString());
+        if(editText.getText().toString().equals("")) {
+            for(Player tmp: player) {
+                tmp.bet(0);
+            }
+            rule.doBet(0);
+        } else {
+            for(Player tmp: player) {
+                tmp.bet(Integer.parseInt(editText.getText().toString()));
+            }
+            rule.doBet(4 * Integer.parseInt(editText.getText().toString()));
+        }
+        state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
+        money1.setText("현재 돈 :" + player[1].money);
+        money2.setText("현재 돈 :" + player[2].money);
+        money3.setText("현재 돈 :" + player[3].money);
+        money.setText("판돈 :" + rule.gameMoney);
     }
 }

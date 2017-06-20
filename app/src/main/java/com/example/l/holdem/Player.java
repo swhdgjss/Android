@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Player extends Rule{
     public String name;
     public ArrayList<Tuple> card;
+    public int money = 1000000;
     public double score;
     public Deck deck;
     Num num = new Num();
@@ -28,6 +29,10 @@ public class Player extends Rule{
         tmp = this.deal(this.deck);
         card.add(tmp);
         this.print(this.card);
+    }
+
+    public void bet(int tmp) {
+        this.money -= tmp;
     }
 
     public void clear() {

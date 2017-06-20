@@ -13,6 +13,7 @@ public class Rule{
     public ArrayList<Tuple> board = new ArrayList<Tuple>(6);
     public Random random = new Random();
     public Deck deck;
+    public int gameMoney = 0;
 
     public Rule(Deck deck) {
         this.deck = deck;
@@ -71,6 +72,10 @@ public class Rule{
         this.print(this.board);
     }
 
+    public void doBet(int tmp) {
+        gameMoney += tmp;
+    }
+
     public void print(ArrayList<Tuple> board) {
         for(Tuple tmp : board) {
             System.out.print(tmp.getX() + ", " + tmp.getY() + " | ");
@@ -81,6 +86,7 @@ public class Rule{
     public void clear() {
         board.clear();
         deck.clear();
+        gameMoney = 0;
     }
 
     public String[] hands(ArrayList<Tuple> card) {
