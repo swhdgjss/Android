@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
@@ -35,17 +33,17 @@ public class MainActivity extends AppCompatActivity {
                 else name = editText.getText().toString();
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.radioButton:
-                        Intent intent = new Intent(MainActivity.this, Play4.class);
+                        Intent intent = new Intent(MainActivity.this, Play2.class);
                         intent.putExtra("state", name);
                         startActivity(intent);
                         break;
                     case R.id.radioButton2:
-                        Intent intent2 = new Intent(MainActivity.this, Play5.class);
+                        Intent intent2 = new Intent(MainActivity.this, Play3.class);
                         intent2.putExtra("state", name);
                         startActivity(intent2);
                         break;
                     case R.id.radioButton3:
-                        Intent intent3 = new Intent(MainActivity.this, Play6.class);
+                        Intent intent3 = new Intent(MainActivity.this, Play4.class);
                         intent3.putExtra("state", name);
                         startActivity(intent3);
                         break;

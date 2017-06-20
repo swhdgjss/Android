@@ -195,16 +195,16 @@
 
     <TextView
         android:id="@+id/money1"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/card3"
         android:layout_alignLeft="@+id/board1"
         android:layout_alignStart="@+id/board1"
-        android:layout_marginBottom="26dp" />
+        android:layout_marginBottom="15dp" />
 
     <TextView
         android:id="@+id/money2"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/card5"
         android:layout_alignStart="@+id/card5"
@@ -213,10 +213,11 @@
 
     <TextView
         android:id="@+id/money3"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/money2"
-        android:layout_alignEnd="@+id/card7"
-        android:layout_alignRight="@+id/card7" />
+        android:layout_below="@+id/card7"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/money2" />
 
 </RelativeLayout>

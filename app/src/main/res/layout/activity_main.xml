@@ -32,22 +32,22 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="4명"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="2명" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="5명" />
+            android:text="3명" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="6명" />
+            android:text="4명" />
     </RadioGroup>
 
     <TextView

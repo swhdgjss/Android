@@ -356,7 +356,6 @@ public class Play4 extends AppCompatActivity {
                 break;
             }
         }
-        //rule.clear();
     }
 
     public void replay() {
