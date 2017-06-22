@@ -31,8 +31,15 @@ public class Player extends Rule{
         this.print(this.card);
     }
 
-    public void bet(int tmp) {
-        this.money -= tmp;
+    public int bet(int tmp) {
+        if(tmp > money) {
+            int temp = money;
+            this.money -= money;
+            return temp;
+        } else {
+            this.money -= tmp;
+            return tmp;
+        }
     }
 
     public void clear() {

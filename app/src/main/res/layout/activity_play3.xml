@@ -6,4 +6,185 @@
     android:layout_height="match_parent"
     tools:context="com.example.l.holdem.Play3">
 
+    <TextView
+        android:id="@+id/money1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/money2"
+        android:layout_alignBottom="@+id/money2"
+        android:layout_toLeftOf="@+id/editText3"
+        android:layout_toStartOf="@+id/editText3" />
+
+    <TextView
+        android:id="@+id/money2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/card5"
+        android:layout_alignStart="@+id/card5"
+        android:layout_below="@+id/card5"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="판돈 : "
+        android:textSize="20sp"
+        android:layout_above="@+id/board4"
+        android:layout_alignRight="@+id/board3"
+        android:layout_alignEnd="@+id/board3"
+        android:layout_marginBottom="42dp" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:layout_alignBottom="@+id/replay"
+        android:layout_alignRight="@+id/bet"
+        android:layout_alignEnd="@+id/bet" />
+
+    <Button
+        android:id="@+id/replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/board1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/board1"
+        android:layout_marginBottom="19dp"
+        android:text="다시하기" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="돈을 입력하세요."
+        android:inputType="number"
+        android:layout_below="@+id/card1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/bet"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="배팅"
+        android:layout_alignTop="@+id/editText3"
+        android:layout_alignRight="@+id/card2"
+        android:layout_alignEnd="@+id/card2" />
+
+    <ImageView
+        android:id="@+id/board3"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/board2"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/board2"
+        android:layout_toRightOf="@+id/board2"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/board5"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/board4"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/board4"
+        android:layout_toRightOf="@+id/board4"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/board4"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/board3"
+        android:layout_alignStart="@+id/board3"
+        android:layout_alignTop="@+id/board3"
+        android:layout_marginLeft="72dp"
+        android:layout_marginStart="80dp"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/board1"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/back"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="235dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/board3"
+        android:layout_alignLeft="@+id/board1"
+        android:layout_alignStart="@+id/board1"
+        android:layout_marginBottom="120dp"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/card4"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/board2"
+        android:layout_alignStart="@+id/board2"
+        android:layout_alignTop="@+id/card3"
+        android:layout_toRightOf="@+id/card3"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/card6"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        app:srcCompat="@drawable/back"
+        android:layout_above="@+id/money2"
+        android:layout_alignLeft="@+id/board5"
+        android:layout_alignStart="@+id/board5" />
+
+    <ImageView
+        android:id="@+id/card5"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/board4"
+        android:layout_alignStart="@+id/board4"
+        android:layout_alignTop="@+id/card4"
+        android:layout_toRightOf="@id/card4"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/board5"
+        android:layout_alignStart="@+id/board5"
+        android:layout_alignTop="@+id/card1"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/card1"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/board4"
+        android:layout_alignStart="@+id/board4"
+        android:layout_below="@+id/board4"
+        android:layout_marginTop="82dp"
+        app:srcCompat="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/board2"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/board1"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/board1"
+        android:layout_toRightOf="@+id/board1"
+        app:srcCompat="@drawable/back" />
 </RelativeLayout>

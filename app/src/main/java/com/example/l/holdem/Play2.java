@@ -342,6 +342,10 @@ public class Play2 extends AppCompatActivity {
                 break;
             }
         }
+
+        state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
+        money1.setText("현재 돈 :" + player[1].money);
+        money.setText("판돈 :" + rule.gameMoney);
     }
 
     public void replay() {
@@ -381,9 +385,9 @@ public class Play2 extends AppCompatActivity {
             rule.doBet(0);
         } else {
             for(Player tmp: player) {
-                tmp.bet(Integer.parseInt(editText.getText().toString()));
+                //tmp.bet(Integer.parseInt(editText.getText().toString()));
+                rule.doBet(tmp.bet(Integer.parseInt(editText.getText().toString())));
             }
-            rule.doBet(2 * Integer.parseInt(editText.getText().toString()));
         }
         state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
         money1.setText("현재 돈 :" + player[1].money);
