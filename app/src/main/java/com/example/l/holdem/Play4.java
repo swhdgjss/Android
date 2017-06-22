@@ -158,8 +158,8 @@ public class Play4 extends AppCompatActivity {
             tmp.draw();
         }
 
-        open(player[0].card.get(0), card1);
-        open(player[0].card.get(1), card2);
+        open(player[0].getCard(0), card1);
+        open(player[0].getCard(1), card2);
     }
 
     public void open(Tuple card, ImageView imageView) {
@@ -372,13 +372,13 @@ public class Play4 extends AppCompatActivity {
 
     public void lastTurn() {
         for(int i = 0; i < 4; i++) {
-            player[i].sum(player[i].card, rule.board);
-            score[i] = player[i].determineHands(player[i].hands(player[i].card));
+            player[i].sum(player[i].getCards(), rule.board);
+            score[i] = player[i].determineHands(player[i].hands(player[i].getCards()));
         }
         double win = max(max(score[0], score[1]), max(score[2], score[3]));
 
         for(Player tmp: player) {
-            if(tmp.score == win) {
+            if(tmp.getScore() == win) {
                 Toast.makeText(this, tmp.name + "'s win!!", Toast.LENGTH_SHORT).show();
                 tmp.setMoney(tmp.getMoney() + rule.gameMoney);
                 break;
@@ -419,12 +419,12 @@ public class Play4 extends AppCompatActivity {
     }
 
     public void showDown() {
-        open(player[1].card.get(0), card3);
-        open(player[1].card.get(1), card4);
-        open(player[2].card.get(0), card5);
-        open(player[2].card.get(1), card6);
-        open(player[3].card.get(0), card7);
-        open(player[3].card.get(1), card8);
+        open(player[1].getCard(0), card3);
+        open(player[1].getCard(1), card4);
+        open(player[2].getCard(0), card5);
+        open(player[2].getCard(1), card6);
+        open(player[3].getCard(0), card7);
+        open(player[3].getCard(1), card8);
     }
 
     public void betting() {

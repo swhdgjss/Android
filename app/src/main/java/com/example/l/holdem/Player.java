@@ -7,12 +7,12 @@ package com.example.l.holdem;
 import java.util.ArrayList;
 
 public class Player extends Rule{
-    public String name;
-    public ArrayList<Tuple> card;
+    final public String name;
+    private ArrayList<Tuple> card;
     private int money = 1000000;
-    public double score;
+    private double score;
     public Deck deck;
-    Num num = new Num();
+    public Num num = new Num();
 
     public Player(String name, Deck deck) {
         super(deck);
@@ -166,5 +166,17 @@ public class Player extends Rule{
 
     public void setMoney(int tmp) {
         this.money = tmp;
+    }
+
+    public Tuple getCard(int num) {
+        return card.get(num);
+    }
+
+    public ArrayList<Tuple> getCards() {
+        return card;
+    }
+
+    public double getScore() {
+        return score;
     }
 }
