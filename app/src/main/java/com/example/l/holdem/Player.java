@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Player extends Rule{
     public String name;
     public ArrayList<Tuple> card;
-    public int money = 1000000;
+    private int money = 1000000;
     public double score;
     public Deck deck;
     Num num = new Num();
@@ -158,5 +158,13 @@ public class Player extends Rule{
                 return score;
         }
         return 0;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int tmp) {
+        this.money = tmp;
     }
 }

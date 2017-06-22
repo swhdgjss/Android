@@ -107,10 +107,35 @@ public class Play2 extends AppCompatActivity {
     }
 
     public void game() {
-        System.out.println(player[0].name + player[0].money);
-        state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
-        money1.setText("현재 돈 :" + player[1].money);
+        System.out.println(player[0].name + player[0].getMoney());
+        state.setText(player[0].name + ", 현재 돈 :" + player[0].getMoney());
+        money1.setText("현재 돈 :" + player[1].getMoney());
         money.setText("판돈 :" + rule.gameMoney);
+
+        if(player[0].getMoney() == 0) {
+            dialog.setTitle("충전");
+            dialog.setMessage("잔고가 0입니다. 충전하시겠습니까?");
+            dialog.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    player[0].setMoney(1000000);;
+                    state.setText(player[0].name + ", 현재 돈 :" + player[0].getMoney());
+                }
+            });
+            dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            dialog.show();
+        }
+
+        if(player[1].getMoney() == 0) {
+            player[1].setMoney(1000000);
+        }
+
+        money1.setText("현재 돈 :" + player[1].getMoney());
 
         for(Player tmp: player) {
             tmp.draw();
@@ -338,13 +363,13 @@ public class Play2 extends AppCompatActivity {
         for(Player tmp: player) {
             if(tmp.score == win) {
                 Toast.makeText(this, tmp.name + "'s win!!", Toast.LENGTH_SHORT).show();
-                tmp.money += rule.gameMoney;
+                tmp.setMoney(tmp.getMoney() + rule.gameMoney);
                 break;
             }
         }
 
-        state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
-        money1.setText("현재 돈 :" + player[1].money);
+        state.setText(player[0].name + ", 현재 돈 :" + player[0].getMoney());
+        money1.setText("현재 돈 :" + player[1].getMoney());
         money.setText("판돈 :" + rule.gameMoney);
     }
 
@@ -389,8 +414,8 @@ public class Play2 extends AppCompatActivity {
                 rule.doBet(tmp.bet(Integer.parseInt(editText.getText().toString())));
             }
         }
-        state.setText(player[0].name + ", 현재 돈 :" + player[0].money);
-        money1.setText("현재 돈 :" + player[1].money);
+        state.setText(player[0].name + ", 현재 돈 :" + player[0].getMoney());
+        money1.setText("현재 돈 :" + player[1].getMoney());
         money.setText("판돈 :" + rule.gameMoney);
     }
 }
