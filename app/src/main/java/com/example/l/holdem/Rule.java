@@ -43,21 +43,11 @@ public class Rule{
         }
     }
 
-    public void flopOpen() {
-        flop();
-        this.print(this.board);
-    }
-
     public void turn() {
         Tuple tmp;
 
         tmp = this.deal(this.deck);
         board.add(tmp);
-    }
-
-    public void turnOpen() {
-        turn();
-        this.print(this.board);
     }
 
     public void river() {
@@ -67,20 +57,8 @@ public class Rule{
         board.add(tmp);
     }
 
-    public void riverOpen() {
-        river();
-        this.print(this.board);
-    }
-
     public void doBet(int tmp) {
         gameMoney += tmp;
-    }
-
-    public void print(ArrayList<Tuple> board) {
-        for(Tuple tmp : board) {
-            System.out.print(tmp.getX() + ", " + tmp.getY() + " | ");
-        }
-        System.out.println();
     }
 
     public void clear() {

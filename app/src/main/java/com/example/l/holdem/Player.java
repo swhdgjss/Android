@@ -28,7 +28,6 @@ public class Player extends Rule{
         card.add(tmp);
         tmp = this.deal(this.deck);
         card.add(tmp);
-        this.print(this.card);
     }
 
     public int bet(int tmp) {
@@ -46,20 +45,10 @@ public class Player extends Rule{
         card.clear();
     }
 
-    public void print(ArrayList<Tuple> card) {
-        System.out.print(this.name + ": ");
-        for(Tuple tmp : card) {
-            System.out.print(tmp.getX() + ", " + tmp.getY() + " | ");
-        }
-        System.out.println();
-    }
-
     public void sum(ArrayList<Tuple> card, ArrayList<Tuple> board) {
         for(Tuple tmp : board) {
             card.add(tmp);
         }
-
-        this.print(this.card);
     }
 
     public double determineHands(String[] hand) {

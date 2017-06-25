@@ -342,7 +342,7 @@ public class Play4 extends AppCompatActivity {
     public void firstTurn() {
         betting();
 
-        rule.flopOpen();
+        rule.flop();
         open(rule.board.get(0), board1);
         open(rule.board.get(1), board2);
         open(rule.board.get(2), board3);
@@ -352,7 +352,7 @@ public class Play4 extends AppCompatActivity {
     public void secondTurn() {
         betting();
 
-        rule.turnOpen();
+        rule.turn();
         open(rule.board.get(3), board4);
         flag++;
     }
@@ -360,7 +360,7 @@ public class Play4 extends AppCompatActivity {
     public void thirdTurn() {
         betting();
 
-        rule.riverOpen();
+        rule.river();
         open(rule.board.get(4), board5);
         flag++;
     }
