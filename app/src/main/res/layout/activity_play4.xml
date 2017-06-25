@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.l.holdem.Play4">
 
     <ImageView
         android:id="@+id/card2"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_marginBottom="52dp"
-        android:layout_marginRight="14dp"
-        android:layout_marginEnd="14dp"
         android:layout_above="@+id/button2"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/card3"
@@ -33,10 +34,10 @@
         android:id="@+id/card5"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_alignTop="@+id/card6"
         android:layout_alignLeft="@+id/card3"
-        android:layout_alignStart="@+id/card3" />
+        android:layout_alignStart="@+id/card3"
+        android:layout_alignTop="@+id/card6"
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/card6"
@@ -53,10 +54,10 @@
         android:id="@+id/card4"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_alignTop="@+id/card1"
         android:layout_alignLeft="@+id/card6"
-        android:layout_alignStart="@+id/card6" />
+        android:layout_alignStart="@+id/card6"
+        android:layout_alignTop="@+id/card1"
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/card1"
@@ -73,22 +74,22 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_alignEnd="@+id/board5"
+        android:layout_alignRight="@+id/board5"
         android:text="name"
         android:textAllCaps="false"
         android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignRight="@+id/board5"
-        android:layout_alignEnd="@+id/board5" />
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/card7"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_alignTop="@+id/card6"
         android:layout_alignLeft="@+id/card1"
-        android:layout_alignStart="@+id/card1" />
+        android:layout_alignStart="@+id/card1"
+        android:layout_alignTop="@+id/card6"
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/card8"

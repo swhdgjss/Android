@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context="com.example.l.holdem.MainActivity">
 
     <TextView
@@ -12,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="100dp"
         android:gravity="center_horizontal"
         android:text="이름을 정하고 \n플레이어 수를 선택하세요"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@android:color/black"
         android:textSize="30sp" />
 
     <RadioGroup
@@ -67,12 +68,12 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignTop="@+id/textView3"
         android:ems="10"
         android:hint="Name"
-        android:inputType="textPersonName"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2" />
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button"
@@ -80,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="98dp"
         android:text="시작" />
 
 </RelativeLayout>

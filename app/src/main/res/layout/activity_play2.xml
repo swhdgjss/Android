@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.l.holdem.Play2">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button7"
+        android:layout_alignEnd="@+id/card2"
+        android:layout_alignRight="@+id/card2"
+        android:layout_marginEnd="9dp"
+        android:layout_marginRight="9dp"
         android:text="name"
         android:textAllCaps="false"
         android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:layout_alignBottom="@+id/button7"
-        android:layout_alignRight="@+id/card2"
-        android:layout_alignEnd="@+id/card2"
-        android:layout_marginRight="9dp"
-        android:layout_marginEnd="9dp" />
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/button7"
@@ -34,22 +35,22 @@
         android:id="@+id/editText5"
         android:layout_width="140dp"
         android:layout_height="40dp"
+        android:layout_above="@+id/button7"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/board2"
+        android:layout_toRightOf="@+id/board2"
         android:ems="10"
         android:hint="돈을 입력하세요."
-        android:inputType="number"
-        android:layout_above="@+id/button7"
-        android:layout_toRightOf="@+id/board2"
-        android:layout_toEndOf="@+id/board2"
-        android:layout_marginBottom="10dp" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="배팅"
         android:layout_alignTop="@+id/editText5"
+        android:layout_toEndOf="@+id/card1"
         android:layout_toRightOf="@+id/card1"
-        android:layout_toEndOf="@+id/card1" />
+        android:text="배팅" />
 
     <ImageView
         android:id="@+id/board3"
@@ -112,20 +113,20 @@
         android:id="@+id/card2"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_marginBottom="34dp"
         android:layout_above="@+id/button8"
         android:layout_alignLeft="@+id/board5"
-        android:layout_alignStart="@+id/board5" />
+        android:layout_alignStart="@+id/board5"
+        android:layout_marginBottom="34dp"
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/card1"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_alignTop="@+id/card2"
         android:layout_alignLeft="@+id/board4"
-        android:layout_alignStart="@+id/board4" />
+        android:layout_alignStart="@+id/board4"
+        android:layout_alignTop="@+id/card2"
+        app:srcCompat="@drawable/back" />
 
     <ImageView
         android:id="@+id/card4"
@@ -141,10 +142,10 @@
         android:id="@+id/card3"
         android:layout_width="60dp"
         android:layout_height="80dp"
-        app:srcCompat="@drawable/back"
-        android:layout_below="@+id/textView17"
         android:layout_alignLeft="@+id/gamemoney"
-        android:layout_alignStart="@+id/gamemoney" />
+        android:layout_alignStart="@+id/gamemoney"
+        android:layout_below="@+id/textView17"
+        app:srcCompat="@drawable/back" />
 
     <TextView
         android:id="@+id/gamemoney"
